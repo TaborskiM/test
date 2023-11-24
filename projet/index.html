@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            color: #333;
+        }
+
+        .client-info {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .client-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="ajouter.html">Ajouter</a></li>
+            <li><a href="supprimer.html">Supprimer</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Clients</h2>
+        <?php
+        include('connex.php');
+
+        $result = $conn->query("SELECT * FROM client");
+        while ($row = $result->fetch_assoc()) {
+            echo '<div class="client-info">';
+            echo '<p><strong>CODCLT:</strong> ' . $row['CODCLT'] . '</p>';
+            echo '<p><strong>Nom:</strong> ' . $row['Nom_CLT'] . '</p>';
+            echo '<p><strong>Adresse:</strong> ' . $row['ADRS_CLT'] . '</p>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+</body>
+</html>
